@@ -2,6 +2,9 @@ part of pin_code_fields;
 
 /// Pin code text fields which automatically changes focus and validates
 class PinCodeTextField extends StatefulWidget {
+  /// a Key to be used to type in the  textfield by flutter driver
+  final Key textKey;
+
   /// The [BuildContext] of the application
   final BuildContext appContext;
 
@@ -114,6 +117,7 @@ class PinCodeTextField extends StatefulWidget {
 
   PinCodeTextField({
     Key key,
+    this.textKey = const Key(''),
     @required this.appContext,
     @required this.length,
     this.controller,
@@ -427,6 +431,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
               absorbing: true, // it prevents on tap on the text field
               child: AutofillGroup(
                 child: TextFormField(
+                  key: widget.textKey,
                   textInputAction: widget.textInputAction,
                   controller: _textEditingController,
                   focusNode: _focusNode,
